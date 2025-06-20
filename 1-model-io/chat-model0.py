@@ -12,13 +12,13 @@ llm = Ollama(model="llama3.1:8b", temperature=0.7)
 chat_model = ChatOllama(model="llama3.1:8b", temperature=0.7)
 
 # 모델에게 물어볼 질문을 정의합니다
-text = "힙합가사 한 소절을 작성해줘"
+text = "Make hip-hop lyrics with dope punchlines"
 
 # 채팅 모델에 전달할 메시지 목록을 생성합니다
 # SystemMessage: 모델의 페르소나를 정의합니다 (랩퍼 역할)
 # HumanMessage: 실제 사용자의 질문을 담습니다
 messages = [
-    SystemMessage(content="당신은 랩퍼입니다."),
+    SystemMessage(content="You are a 1990's East Side Hip Hop rapper."),
     HumanMessage(content=text),
 ]
 
