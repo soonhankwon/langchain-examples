@@ -1,6 +1,5 @@
 from typing import List  # 타입 힌팅을 위한 List 타입
 from langchain_community.llms import Ollama  # 일반 텍스트 생성을 위한 Ollama 모델
-from langchain_community.chat_models import ChatOllama  # 대화형 응답을 위한 Ollama 채팅 모델
 from langchain.schema import BaseOutputParser  # 출력 파서의 기본 클래스
 from langchain.prompts import ChatPromptTemplate  # 채팅 프롬프트 템플릿
 
