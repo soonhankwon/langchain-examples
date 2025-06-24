@@ -6,7 +6,6 @@ from langchain.prompts import ChatPromptTemplate  # 채팅 프롬프트 템플�
 
 # Ollama 모델들을 초기화
 llm = Ollama(model="llama3.1:8b", temperature=0.7)  # 일반 텍스트 생성 모델
-chat_model = ChatOllama(model="llama3.1:8b", temperature=0.7)  # 채팅 모델
 
 # 쉼표로 구분된 리스트를 파싱하는 커스텀 출력 파서를 정의
 class CommaSeparatedListOutputParser(BaseOutputParser):
