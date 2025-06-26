@@ -1,7 +1,13 @@
-from typing import List  # 타입 힌팅을 위한 List 타입
-from langchain_community.llms import Ollama  # 일반 텍스트 생성을 위한 Ollama 모델
-from langchain.schema import BaseOutputParser  # 출력 파서의 기본 클래스
-from langchain.prompts import ChatPromptTemplate  # 채팅 프롬프트 템플릿
+from langchain_community.document_loaders import CSVLoader
 
-# Ollama 모델들을 초기화
-llm = Ollama(model="llama3.1:8b", temperature=0.7)  # 일반 텍스트 생성 모델
+# Mobile Phone Pricing.csv 파일을 로드하기 위한 CSVLoader 인스턴스 생성
+loader = CSVLoader(file_path="./Mobile Phone Pricing.csv")
+
+# CSV 파일의 데이터를 로드
+data = loader.load()
+
+# 첫 번째 데이터의 내용 출력
+print(data[0].page_content)
+
+# 첫 번째 데이터의 메타데이터 출력 (파일 정보 등)
+print(data[0].metadata)
