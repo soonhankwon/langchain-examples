@@ -29,3 +29,29 @@ print(texts[1].page_content)
 """
 of Congress and the Cabinet. Justices of the Supreme Court. My fellow Americans.
 """
+
+# 텍스트를 문자 단위로 분할하기 위한 CharacterTextSplitter 임포트
+from langchain.text_splitter import CharacterTextSplitter
+
+# CharacterTextSplitter 인스턴스 생성
+# - chunk_size: 각 청크의 최대 크기를 100자로 설정
+# - chunk_overlap: 청크 간 20자씩 중복되도록 설정
+text_splitter = CharacterTextSplitter(
+    chunk_size=100,
+    chunk_overlap=20,
+)
+
+# state_of_the_union 텍스트를 청크로 분할
+texts = text_splitter.split_text(state_of_the_union)
+
+# 생성된 청크의 총 개수 출력
+print(len(texts))
+"""
+336
+"""
+
+# 첫 번째 청크의 내용 출력
+print(texts[0])
+"""
+Madam Speaker, Madam Vice President, our First Lady and Second Gentleman. Members of Congress and the Cabinet. Justices of the Supreme Court. My fellow Americans.
+"""
