@@ -76,3 +76,23 @@ The textbook includes chapters on the relationship between mathematics and physi
 
 **Impact**: The Feynman Lectures have had a significant impact on physics education, making complex ideas accessible to students and inspiring new generations of physicists.
 """
+from langchain.retrievers.document_compressors import LLMChainExtractor
+from langchain.retrievers import ContextualCompressionRetriever
+ 
+# Context Compressor
+compress = LLMChainExtractor.from_llm(llm=llm)
+compression_retriever = ContextualCompressionRetriever(
+    base_compressor=compress,
+    base_retriever=retriever_from_llm
+)
+
+compressed_docs = compression_retriever.invoke(question)
+print("\n📄 Compressed Document:")
+print(compressed_docs[0].page_content)
+"""
+📄 Compressed Document:
+The Feynman Lectures Website, September 2013.
+"The Feynman Lectures on Physics, Volume I" (online edition)
+"The Feynman Lectures on Physics, Volume II" (online edition)
+"The Feynman Lectures on Physics, Volume III" (online edition)
+"""
