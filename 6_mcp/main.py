@@ -17,6 +17,8 @@ from mcp.types import (
     Tool,
     TextContent,
 )
+from langchain_community.chat_models import ChatOllama
+from langchain.prompts import ChatPromptTemplate
 
 # 환경 변수 로드
 load_dotenv()

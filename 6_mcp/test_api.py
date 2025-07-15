@@ -1,5 +1,6 @@
 import requests
 import json
+import re
 from langchain_community.chat_models import ChatOllama
 from langchain.prompts import ChatPromptTemplate
 
@@ -10,6 +11,11 @@ prompt = ChatPromptTemplate.from_template("""
 """)
 
 BASE_URL = "http://localhost:8000"
+
+def extract_user_id(text):
+    """텍스트에서 숫자 추출"""
+    numbers = re.findall(r'\d+', text)
+    return int(numbers[0]) if numbers else None
 
 def test_get_user(user_id):
     """특정 유저 조회 테스트"""
@@ -32,16 +38,24 @@ if __name__ == "__main__":
     print("Supabase User API 테스트를 시작합니다...")
     print()
     
-    # 테스트할 유저 ID를 입력하세요
-    user_id = int(input("조회할 유저 ID를 입력하세요: "))
+    # 자연어로 유저 ID 입력 받기
+    user_input = input("찾고 싶은 유저를 입력하세요 (예: 1번 유저 찾아줘): ")
+    user_id = extract_user_id(user_input)
     
-    # 특정 유저 조회
-    test_get_user(user_id)
+    if user_id is not None:
+        # 특정 유저 조회
+        test_get_user(user_id)
+    else:
+        print("유효한 유저 ID를 찾을 수 없습니다. 숫자를 포함하여 입력해주세요.")
     
     print("테스트 완료!")
 
 """
-조회할 유저 ID를 입력하세요: 1
+Supabase User API 테스트를 시작합니다...
+
+찾고 싶은 유저를 입력하세요 (예: 1번 유저 찾아줘): 1번 유저 
 === 특정 유저 조회 결과 ===
-사용자의 ID는 1이고, 닉네임은 '테스터'이며, 이메일 주소는 'tester@gmail.com'입니다.
+사용자의 아이디는 1이고, 닉네임은 '테스터'이며, 이메일 주소는 'test@gmail.com'입니다.
+
+테스트 완료!
 """
