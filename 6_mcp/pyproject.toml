@@ -1,0 +1,23 @@
+[project]
+name = "6-mcp"
+version = "0.1.0"
+description = "FastAPI MCP server for Supabase user management"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.104.0",
+    "uvicorn>=0.24.0",
+    "supabase>=2.0.0",
+    "mcp>=1.0.0",
+    "pydantic>=2.0.0",
+    "python-dotenv>=1.0.0",
+    "requests>=2.32.4",
+    "langchain-community>=0.3.27",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "black>=23.0.0",
+    "isort>=5.0.0"
+]
